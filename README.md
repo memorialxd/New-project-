@@ -56,17 +56,22 @@ For Vercel/hosting, set the same `VITE_*` variables in the project settings (bui
 
 ## Restore the store catalog (required once on Supabase)
 
-In the **Supabase SQL Editor** for project `ajkefntritjjynzofprq`, run:
+The app is already wired to project **`ajkefntritjjynzofprq`**. Catalog browsing is empty until this one-time SQL is applied (RLS/`stores_public` bug).
 
-[`supabase/fix_stores_public.sql`](./supabase/fix_stores_public.sql)
+**Option A — script** (needs a personal access token or DB URI):
 
-Then verify:
+```bash
+export SUPABASE_ACCESS_TOKEN=sbp_...   # https://supabase.com/dashboard/account/tokens
+npm run db:fix-stores
+```
+
+**Option B — SQL Editor:** paste [`supabase/fix_stores_public.sql`](./supabase/fix_stores_public.sql), then:
 
 ```sql
 select count(*) from public.stores_public;
 ```
 
-You should see active restaurants. Until this runs, `/order` will load but show no stores.
+Until this runs, `/order` loads but shows no restaurants.
 
 Also rotate any anon JWT that was previously committed in cron SQL (see [`CRON_README.md`](./CRON_README.md)) and prefer `supabase/cron_sanitize.sql`.
 
