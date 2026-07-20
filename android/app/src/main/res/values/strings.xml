@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Fresh Delivery</string>
+    <string name="title_activity_main">Fresh Delivery</string>
+    <string name="package_name">app.lovable.a8538a5288f34701a1b9d56a6120ba4c</string>
+    <string name="custom_url_scheme">app.lovable.a8538a5288f34701a1b9d56a6120ba4c</string>
+</resources>

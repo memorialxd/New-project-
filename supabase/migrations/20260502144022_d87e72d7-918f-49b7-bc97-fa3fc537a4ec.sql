@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public.create_external_order(uuid, text, numeric, text, double precision, double precision, numeric, text, text, text, text, numeric, numeric, text);

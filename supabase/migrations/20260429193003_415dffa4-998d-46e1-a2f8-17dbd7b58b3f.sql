@@ -1,0 +1,1 @@
+ALTER TABLE public.platform_settings ADD COLUMN IF NOT EXISTS platform_service_fee numeric NOT NULL DEFAULT 0.99;

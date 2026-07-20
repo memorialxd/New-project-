@@ -1,0 +1,1 @@
+ALTER TABLE public.driver_profiles ALTER COLUMN is_active SET DEFAULT false;

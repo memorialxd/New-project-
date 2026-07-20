@@ -1,0 +1,13 @@
+# Fresh Delivery
+
+> Πλατφόρμα delivery φαγητού που συνδέει πελάτες, εστιατόρια και οδηγούς σε πραγματικό χρόνο.
+
+Fresh Delivery is a real-time food delivery platform serving customers, restaurants, and drivers across Greece. Customers browse nearby restaurants, place orders, track deliveries live, and pay online or with cash.
+
+## Pages
+
+- [Home](/): Landing page describing the service for customers, restaurants, and drivers.
+- [Browse restaurants](/order): Discover nearby restaurants, search menus, and place orders.
+- [Sign in](/auth): Customer, driver, and restaurant sign-in and sign-up.
+- [Terms of service](/legal/terms): Terms and conditions for using Fresh Delivery.
+- [Privacy policy](/legal/privacy): How Fresh Delivery collects and uses personal data.
