@@ -26,3 +26,7 @@ dist-ssr
 
 # Vite temp
 vite.config.ts.timestamp-*.mjs
+
+test-results/
+playwright-report/
+blob-report/

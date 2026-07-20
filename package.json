@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "db:fix-stores": "node --env-file=.env.development scripts/apply-stores-fix.mjs"
+    "db:fix-stores": "node --env-file=.env.development scripts/apply-stores-fix.mjs",
+    "test:smoke": "playwright test e2e/smoke.spec.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.1",
