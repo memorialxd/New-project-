@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.nearby_active_drivers FROM PUBLIC, anon;

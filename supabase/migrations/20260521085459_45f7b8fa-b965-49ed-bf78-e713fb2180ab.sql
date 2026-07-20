@@ -1,0 +1,1 @@
+ALTER TABLE public.store_pricing_overrides ADD COLUMN IF NOT EXISTS max_pay numeric;

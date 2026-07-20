@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Color+Emoji&display=swap');
+
+/* Ensure emojis always render in full color across Android/Windows/Linux */
+.emoji, .emoji * {
+  font-family: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji Mozilla', sans-serif !important;
+  font-variant-emoji: emoji;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ───────────────────────────────────────────────
+     RIVERSTONE FLOW — global design system
+     Calm, dependable, layered. Light by default.
+     Brand: steel-blue. Accent: warm amber.
+     Surfaces: warm white on soft neutral, hairline
+     borders, soft elevation shadows, rounded-xl.
+     ─────────────────────────────────────────────── */
+  :root {
+    /* Surfaces */
+    --background: 220 25% 97%;     /* page: cool warm-white */
+    --foreground: 220 25% 12%;     /* near-black, slight blue */
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Brand: steel-blue (calm, dependable) */
+    --primary: 210 70% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: soft neutral chip surface */
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 220 25% 18%;
+
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 12% 42%;
+
+    /* Accent: warm amber (highlights, callouts) */
+    --accent: 35 92% 55%;
+    --accent-foreground: 220 25% 12%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 35 92% 52%;
+    --warning-foreground: 220 25% 12%;
+
+    --info: 210 70% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 220 18% 88%;
+    --input: 220 18% 88%;
+    --ring: 210 70% 48%;
+
+    --radius: 0.875rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 18%;
+    --sidebar-primary: 210 70% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 94%;
+    --sidebar-accent-foreground: 220 25% 12%;
+    --sidebar-border: 220 18% 90%;
+    --sidebar-ring: 210 70% 48%;
+
+    /* Gradients — soft, never neon */
+    --gradient-primary: linear-gradient(135deg, hsl(210 70% 48%), hsl(195 75% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(152 60% 42%), hsl(168 55% 46%));
+    --gradient-accent: linear-gradient(135deg, hsl(210 70% 48%), hsl(35 92% 55%));
+    --gradient-dark: linear-gradient(135deg, hsl(220 25% 14%), hsl(220 30% 22%));
+
+    /* Layered "depth" shadow language (Riverstone) */
+    --shadow-sm: 0 1px 2px hsl(220 25% 12% / 0.04), 0 1px 3px hsl(220 25% 12% / 0.04);
+    --shadow-md: 0 2px 4px -1px hsl(220 25% 12% / 0.05), 0 8px 16px -4px hsl(220 25% 12% / 0.08);
+    --shadow-lg: 0 4px 8px -2px hsl(220 25% 12% / 0.06), 0 16px 32px -8px hsl(220 25% 12% / 0.12);
+    --shadow-primary: 0 4px 14px hsl(210 70% 48% / 0.22);
+
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 220 18% 94%;
+
+    --card: 220 25% 11%;
+    --card-foreground: 220 18% 94%;
+
+    --popover: 220 25% 11%;
+    --popover-foreground: 220 18% 94%;
+
+    --primary: 210 75% 58%;
+    --primary-foreground: 220 25% 8%;
+
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 220 18% 94%;
+
+    --muted: 220 20% 16%;
+    --muted-foreground: 220 12% 62%;
+
+    --accent: 35 92% 60%;
+    --accent-foreground: 220 25% 8%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 210 75% 58%;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 210 75% 58%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 20% 16%;
+    --sidebar-accent-foreground: 220 18% 94%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 210 75% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    @apply w-full;
+    margin: 0;
+    padding: 0;
+    /* True viewport height that ignores browser chrome on native */
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    /* Safe areas handled per-screen via .safe-area-top/.safe-area-bottom so the
+       app shell color extends edge-to-edge under notch/status bar. */
+    overscroll-behavior: none;
+  }
+
+  /* Native (Capacitor) full-bleed: lock to dynamic viewport, no overscroll bands */
+  html.is-native,
+  html.is-native body,
+  html.is-native #root {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+    background: hsl(220 25% 97%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  /* Hover interactions */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-[1.03];
+  }
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg;
+  }
+  .press-scale {
+    @apply transition-transform duration-100 active:scale-[0.97];
+  }
+  .interactive {
+    @apply transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98];
+  }
+  .icon-spin-hover {
+    @apply transition-transform duration-300 hover:rotate-12;
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 60ms; animation-fill-mode: both; }
+  .stagger-2 { animation-delay: 120ms; animation-fill-mode: both; }
+  .stagger-3 { animation-delay: 180ms; animation-fill-mode: both; }
+  .stagger-4 { animation-delay: 240ms; animation-fill-mode: both; }
+  .stagger-5 { animation-delay: 300ms; animation-fill-mode: both; }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in, .animate-slide-up, .animate-slide-down, .animate-slide-in-right,
+    .animate-pop, .animate-scale-in, .animate-shimmer, .animate-float, .animate-glow-pulse {
+      animation: none !important;
+    }
+    .interactive, .hover-lift, .hover-scale, .press-scale {
+      transition: none !important;
+    }
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ───────────────────────────────────────────────
+     Driver shell — Wolt-style soft modern
+     Warm off-white surfaces, hairline borders,
+     soft layered shadows, generous radius. Green
+     reserved for action/earnings only.
+     ─────────────────────────────────────────────── */
+  .driver-shell {
+    --driver-bg: 36 30% 97%;                /* warm off-white page */
+    --driver-surface: 0 0% 100%;            /* card */
+    --driver-surface-elevated: 36 30% 99%;  /* hover/raised */
+    --driver-surface-muted: 36 22% 95%;     /* chips, inset */
+    --driver-border: 30 14% 90%;            /* hairline */
+    --driver-border-strong: 30 14% 84%;
+    --driver-text: 220 18% 14%;             /* near-black */
+    --driver-text-muted: 220 8% 46%;
+    --driver-accent: 162 58% 38%;           /* teal-leaning green for actions/earnings */
+    --driver-accent-soft: 162 58% 38% / 0.10;
+    --driver-info: 200 75% 46%;             /* calm blue for nav/secondary */
+    --driver-warm: 28 92% 56%;              /* warm amber pickup pin */
+    --driver-radius: 1.125rem;              /* rounded-[18px] */
+    --driver-glass: hsl(0 0% 100% / 0.92);
+    --driver-glass-border: hsl(30 14% 88% / 0.85);
+  }
+
+  .driver-glass {
+    background: var(--driver-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--driver-glass-border);
+    box-shadow:
+      0 1px 2px hsl(220 18% 14% / 0.04),
+      0 8px 24px -8px hsl(220 18% 14% / 0.10);
+  }
+
+  /* Wolt-style card: white, hairline, soft layered elevation */
+  .driver-card {
+    background: hsl(var(--driver-surface));
+    border: 1px solid hsl(var(--driver-border));
+    border-radius: var(--driver-radius);
+    box-shadow:
+      0 1px 2px hsl(220 18% 14% / 0.04),
+      0 6px 20px -10px hsl(220 18% 14% / 0.10);
+  }
+
+  .driver-glow-green {
+    box-shadow: 0 6px 18px -6px hsl(162 58% 38% / 0.45);
+  }
+
+  .driver-glow-red {
+    box-shadow: 0 6px 18px -6px hsl(0 75% 55% / 0.35);
+  }
+
+  .driver-gradient-earn {
+    background: linear-gradient(135deg, hsl(162 58% 40%), hsl(172 50% 44%));
+  }
+
+  .driver-gradient-surface {
+    background: linear-gradient(180deg, hsl(0 0% 100%), hsl(36 22% 96%));
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(225 15% 25% / 0.5) transparent;
+  }
+
+  /* Hide scrollbar visually but keep scrolling — used by horizontal
+     category strips on mobile (CustomerApp, RestaurantPage, etc.). */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(225 15% 25% / 0.5);
+    border-radius: 2px;
+  }
+
+  /* ───────────────────────────────────────────────
+     Customer shell — DoorDash-style: bold red accent,
+     crisp white surfaces, heavy headings, generous radius.
+     Scoped to .customer-shell so the brand-blue token
+     stays the source of truth everywhere else.
+     ─────────────────────────────────────────────── */
+  .customer-shell {
+    --c-bg: 0 0% 100%;
+    --c-surface: 0 0% 100%;
+    --c-surface-muted: 0 0% 96%;
+    --c-border: 0 0% 90%;
+    --c-text: 0 0% 9%;
+    --c-text-muted: 0 0% 38%;
+    --c-accent: 4 90% 47%;            /* DoorDash red */
+    --c-accent-soft: 4 90% 47% / 0.10;
+    --c-accent-dark: 4 90% 38%;
+    --c-radius: 14px;
+    background: hsl(var(--c-bg));
+    color: hsl(var(--c-text));
+  }
+  /* Make status-bar safe area match the white header instead of showing body grey */
+  html:has(.customer-shell),
+  body:has(.customer-shell) {
+    background-color: #fff;
+  }
+  .customer-shell .c-accent { color: hsl(var(--c-accent)); }
+  .customer-shell .c-bg-accent { background: hsl(var(--c-accent)); color: #fff; }
+  .customer-shell .c-bg-accent-soft { background: hsl(var(--c-accent-soft)); color: hsl(var(--c-accent-dark)); }
+  .customer-shell .c-card {
+    background: hsl(var(--c-surface));
+    border: 1px solid hsl(var(--c-border));
+    border-radius: var(--c-radius);
+  }
+  .customer-shell .c-muted { color: hsl(var(--c-text-muted)); }
+  .customer-shell .c-chip {
+    background: hsl(var(--c-surface-muted));
+    border-radius: 999px;
+  }
+  .customer-shell .c-gradient-hero {
+    background: linear-gradient(120deg, hsl(4 90% 47%), hsl(14 95% 55%) 60%, hsl(28 95% 58%));
+  }
+  .customer-shell .c-gradient-dark {
+    background: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 18%));
+  }
+  .customer-shell h1, .customer-shell h2, .customer-shell h3 {
+    letter-spacing: -0.02em;
+  }
+
+
+  /* ───────────────────────────────────────────────
+     Admin "Notion / Retool" utility-dense shell
+     Scoped to .admin-shell so it doesn't leak into
+     customer / driver / store apps.
+     ─────────────────────────────────────────────── */
+  .admin-shell {
+    --admin-row-h: 32px;
+    --admin-radius: 6px;
+    font-feature-settings: "ss01", "cv11";
+  }
+  .admin-shell {
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: hsl(var(--foreground));
+  }
+  .admin-shell h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .admin-shell h2 { font-size: 13.5px; font-weight: 600; letter-spacing: -0.005em; }
+  .admin-shell h3 { font-size: 12.5px; font-weight: 600; }
+  .admin-shell .num,
+  .admin-shell .tabular-nums { font-variant-numeric: tabular-nums; }
+
+  /* Compact card: tight padding, hairline border, no chunky shadow */
+  .admin-card {
+    @apply bg-card border border-border/70 rounded-md;
+    box-shadow: 0 1px 0 hsl(var(--foreground) / 0.02);
+  }
+  .admin-card-header {
+    @apply flex items-center justify-between px-2.5 py-1.5 border-b border-border/70;
+  }
+  .admin-card-title {
+    @apply text-[11.5px] font-semibold uppercase tracking-wider text-muted-foreground;
+  }
+
+  /* KPI tile — Retool-flavored: small label up, big number, hairline divider strip */
+  .admin-kpi {
+    @apply bg-card border border-border/70 rounded-md px-2.5 py-2 flex flex-col gap-0.5 relative overflow-hidden;
+  }
+  .admin-kpi-label {
+    @apply text-[10.5px] font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-1.5;
+  }
+  .admin-kpi-value {
+    @apply font-heading font-bold text-[19px] leading-tight tabular-nums tracking-tight;
+  }
+  .admin-kpi-sub {
+    @apply text-[10.5px] text-muted-foreground tabular-nums;
+  }
+  .admin-kpi-accent {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+  }
+
+  /* Dense table — flat, sticky header, hairline rows, hover-tinted */
+  .admin-table {
+    @apply w-full text-[12px];
+  }
+  .admin-table thead th {
+    @apply text-[10.5px] font-semibold uppercase tracking-wider text-muted-foreground bg-muted/40 px-2.5 py-1.5 text-left border-b border-border/70 sticky top-0 z-10;
+  }
+  .admin-table tbody td {
+    @apply px-2.5 py-1.5 border-b border-border/40 align-middle whitespace-nowrap;
+    height: var(--admin-row-h);
+  }
+  .admin-table thead th {
+    white-space: nowrap;
+  }
+  .admin-table tbody tr:hover td {
+    @apply bg-muted/30;
+  }
+  .admin-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* Status pill — flat, monoline */
+  .admin-pill {
+    @apply inline-flex items-center gap-1 h-5 px-1.5 rounded-[4px] text-[11px] font-medium border;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Section header strip */
+  .admin-section-header {
+    @apply flex items-center justify-between gap-3 mb-2;
+  }
+  .admin-section-title {
+    @apply text-[15px] font-bold tracking-tight;
+  }
+  .admin-section-sub {
+    @apply text-[12px] text-muted-foreground;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Global a11y + perf defaults (apply to every app:
+   customer, driver, store, admin, support).
+   ─────────────────────────────────────────────── */
+@layer base {
+  /* Visible focus ring for keyboard users on every interactive element.
+     Mouse clicks stay clean thanks to :focus-visible. */
+  :where(a, button, [role="button"], input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Mobile-first tap targets: WCAG 2.5.5 recommends ≥44×44 CSS px.
+     Opt-in via class so we don't bloat tiny inline icons in dense tables. */
+  .tap-target { min-height: 44px; min-width: 44px; }
+
+  /* Images default to lazy + async decode — saves bandwidth across all apps. */
+  img { content-visibility: auto; }
+
+  /* Honor reduced-motion globally — turn off the heavy keyframes we ship. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@keyframes slide-shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes slide-arrow {
+  0%, 100% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+
+@keyframes thumb-pulse {
+  0%   { box-shadow: 0 0 0 0 hsl(var(--driver-accent) / 0.6); }
+  70%  { box-shadow: 0 0 0 14px hsl(var(--driver-accent) / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--driver-accent) / 0); }
+}
+
